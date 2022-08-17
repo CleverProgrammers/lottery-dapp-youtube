@@ -1,0 +1,95 @@
+.wrapper {
+  background-color: #242833;
+  min-height: 200px;
+  width: 50%;
+  margin: 0 auto;
+  border-radius: 2rem;
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  display: flex;
+  padding: 20px;
+  flex-direction: column;
+  margin-top: 40px;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bolder;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.pot {
+  font-size: 1.5rem;
+  font-weight: bolder;
+  color: #fff;
+  text-align: center;
+  flex: 1;
+}
+
+.potAmount {
+  font-size: 1.5rem;
+  font-weight: bolder;
+  color: #fff;
+  text-align: center;
+}
+
+.goldAccent {
+  color: #ffdf3d;
+}
+
+.btn {
+  background-color: #1e2128;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  place-self: center;
+  color: #f45358;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  margin-top: 20px;
+  cursor: pointer;
+  border-radius: 1.5rem;
+  font-weight: bolder;
+  font-size: 1.5rem;
+  border: 1px solid #f45358;
+}
+
+.recentWinnerTitle {
+  font-size: 1.5rem;
+  font-weight: bolder;
+  color: #fff;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.winner {
+  font-size: 1.5rem;
+  font-weight: bolder;
+  color: #fff;
+  text-align: center;
+  color: #f45358;
+}
+
+.textAccent {
+  color: #f45358;
+}
+
+.drawWinnerBtn {
+  background-color: #242833;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  width: 20%;
+  border: 1px solid #f2505e;
+  border-radius: 1.2rem;
+  padding: 10px 20px;
+  font-size: 1.3rem;
+  font-weight: bolder;
+  cursor: pointer;
+  color: #f2505e;
+}
