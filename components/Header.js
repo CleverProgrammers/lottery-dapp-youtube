@@ -1,6 +1,5 @@
 import { useAppContext } from '../context/context'
 import style from '../styles/Header.module.css'
-import truncateEthAddress from 'truncate-eth-address'
 import UserCard from './UserCard'
 import WalletConnectBtn from './WalletConnectBtn'
 const Header = () => {
