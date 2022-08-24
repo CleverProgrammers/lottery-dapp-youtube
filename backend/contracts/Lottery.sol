@@ -5,16 +5,16 @@ pragma solidity ^0.8.15;
 contract Lottery {
     address public owner;
     address payable[] public players;
+    address[] public winners;
     uint public lotteryId;
-    mapping (uint => address payable) public lotteryHistory;
 
     constructor() {
         owner = msg.sender;
-        lotteryId = 1;
+        lotteryId = 0;
     }
 
-    function getWinnerByLottery(uint lottery) public view returns (address payable) {
-        return lotteryHistory[lottery];
+    function getWinners() public view returns (address[] memory){
+        return winners;
     }
 
     function getBalance() public view returns (uint) {
@@ -26,7 +26,7 @@ contract Lottery {
     }
 
     function enter() public payable {
-        require(msg.value > .01 ether);
+        require(msg.value >= .01 ether);
 
         // address of player entering lottery
         players.push(payable(msg.sender));
@@ -40,19 +40,18 @@ contract Lottery {
         return lotteryId;
     }
 
-    function pickWinner() public onlyowner {
-        uint index = getRandomNumber() % players.length;
-        players[index].transfer(address(this).balance);
 
-        lotteryHistory[lotteryId] = players[index];
+    function pickWinner() public onlyOwner {
+        uint randomIndex = getRandomNumber() % players.length;
+        players[randomIndex].transfer(address(this).balance);
+        winners.push(players[randomIndex]);
         lotteryId++;
 
-
-        // reset the state of the contract
+        // Clear the players array. ['player1', 'player2'] 👉 []
         players = new address payable[](0);
     }
 
-    modifier onlyowner() {
+    modifier onlyOwner() {
       require(msg.sender == owner);
       _;
     }

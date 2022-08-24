@@ -1,74 +1,61 @@
 import { createContext, useState, useEffect, useContext } from 'react'
 import Web3 from 'web3'
-import lotteryContract from '../utils/lottery'
+import createLotteryContract from '../utils/lottery'
 export const appContext = createContext()
 
 export const AppProvider = ({ children }) => {
   const [web3, setWeb3] = useState()
   const [address, setAddress] = useState('')
-  const [lcContract, setLcContract] = useState()
+  const [lotteryContract, setLotteryContract] = useState()
   const [lotteryPot, setLotteryPot] = useState()
   const [lotteryPlayers, setPlayers] = useState([])
-  const [latestWinner, setLatestWinner] = useState()
+  const [lastWinner, setLastWinner] = useState([])
   const [lotteryId, setLotteryId] = useState()
   const [etherscanUrl, setEtherscanUrl] = useState()
 
   useEffect(() => {
-    updateState()
-  }, [lcContract, latestWinner])
+    updateLottery()
+  }, [lotteryContract])
 
-  const updateState = () => {
-    if (lcContract) getPot()
-    if (lcContract) getPlayers()
-    if (lcContract) getLotteryId()
-    if (lcContract) getLatestWinner()
-  }
+  const updateLottery = async () => {
+    if (lotteryContract) {
+      try {
+        const pot = await lotteryContract.methods.getBalance().call()
 
-  const getPot = async () => {
-    const pot = await lcContract.methods.getBalance().call()
-    setLotteryPot(web3.utils.fromWei(pot, 'ether'))
-  }
+        setLotteryPot(web3.utils.fromWei(pot, 'ether'))
 
-  const getPlayers = async () => {
-    const players = await lcContract.methods.getPlayers().call()
-    setPlayers(players)
-  }
+        setPlayers(await lotteryContract.methods.getPlayers().call())
 
-  const getLotteryId = async () => {
-    const lotteryId = await lcContract.methods.lotteryId().call()
-    setLotteryId(lotteryId)
-  }
+        setLotteryId(await lotteryContract.methods.lotteryId().call())
 
-  const getLatestWinner = async () => {
-    await getLotteryId()
-    if (lotteryId > 1) {
-      let id = lotteryId - 1
-      const latestWinner = await lcContract.methods
-        .getWinnerByLottery(id)
-        .call()
-      setLatestWinner(latestWinner)
-    } else {
-      setLatestWinner('no winner')
+        setLastWinner(await lotteryContract.methods.getWinners().call())
+        console.log([...lastWinner], 'Last Winners')
+      } catch (error) {
+        console.log(error, 'updateLottery')
+      }
     }
   }
 
-  const enterLotteryHandler = async () => {
+  const enterLottery = async () => {
     try {
-      await lcContract.methods.enter().send({
+      console.log('entering lottery')
+      await lotteryContract.methods.enter().send({
         from: address,
+        // 0.015 ETH in Wei
         value: '15000000000000000',
+        // 0.0003 ETH in Gwei
         gas: 300000,
         gasPrice: null,
       })
-      updateState()
+      updateLottery()
     } catch (err) {
-      console.log(err.message)
+      console.log(err, 'enter')
     }
   }
 
-  const pickWinnerHandler = async () => {
+  const pickWinner = async () => {
     try {
-      let tx = await lcContract.methods.pickWinner().send({
+      let tx = await lotteryContract.methods.pickWinner().send({
         from: address,
         gas: 300000,
         gasPrice: null,
@@ -76,13 +63,13 @@ export const AppProvider = ({ children }) => {
 
       console.log(tx)
       setEtherscanUrl('https://ropsten.etherscan.io/tx/' + tx.transactionHash)
-      updateState()
+      updateLottery()
     } catch (err) {
-      console.log(err.message)
+      console.log(err, 'pick Winner')
     }
   }
 
-  const connectWalletHandler = async () => {
+  const connectWallet = async () => {
     /* check if MetaMask is installed */
     if (
       typeof window !== 'undefined' &&
@@ -99,8 +86,7 @@ export const AppProvider = ({ children }) => {
         const accounts = await web3.eth.getAccounts()
         /* set account 1 to React state */
         setAddress(accounts[0])
-        const lc = lotteryContract(web3)
-        setLcContract(lc)
+        setLotteryContract(createLotteryContract(web3))
         window.ethereum.on('accountsChanged', async () => {
           const accounts = await web3.eth.getAccounts()
 
@@ -108,7 +94,7 @@ export const AppProvider = ({ children }) => {
           setAddress(accounts[0])
         })
       } catch (err) {
-        console.log(err.message)
+        console.log(err, 'connect Wallet')
       }
     } else {
       /* MetaMask is not installed */
@@ -116,21 +102,17 @@ export const AppProvider = ({ children }) => {
     }
   }
 
-  const disconnectWalletHandler = () => {
-    setAddress('')
-  }
   return (
     <appContext.Provider
       value={{
         address,
-        connectWalletHandler,
+        connectWallet,
         lotteryPot,
         lotteryPlayers,
-        enterLotteryHandler,
-        pickWinnerHandler,
-        disconnectWalletHandler,
+        enterLottery,
+        pickWinner,
         lotteryId,
-        latestWinner,
+        lastWinner,
         etherscanUrl,
       }}
     >
