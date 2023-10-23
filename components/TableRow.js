@@ -5,7 +5,7 @@ const TableRow = ({ player }) => {
     <div className={style.wrapper}>
       <div className={style.address}>{truncateEthAddress(player)}</div>
       <div className={style.ethAmmount}>
-        <span className={style.goldAccent}>+0.015 ETH</span>
+        <span className={style.goldAccent}>+0.1 ETH</span>
       </div>
     </div>
   )

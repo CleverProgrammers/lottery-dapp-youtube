@@ -1,4 +1,10 @@
 .wrapper {
-  background-color: #1e2128;
-  padding-bottom: 30px;
+  background-color: #000000;
+  padding-bottom: 30px; 
+}
+.wrapee{
+  display: flex;
+  gap: 5rem;  
+  min-height: 80vh;
+  padding: 2% 5%;
 }

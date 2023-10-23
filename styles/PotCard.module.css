@@ -1,39 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=Gruppo&family=Handjet&family=Pixelify+Sans&family=VT323&display=swap");
+
 .wrapper {
-  background-color: #242833;
+  background-color: #1f1e1e;
   min-height: 200px;
   width: 50%;
   margin: 0 auto;
-  border-radius: 2rem;
-  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-  -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  border-radius: 0.5rem;
+  border: 3px solid #fff;
   display: flex;
-  padding: 20px;
+  padding: 40px;
   flex-direction: column;
-  margin-top: 40px;
+  margin: 15px;
+  box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.3), 0 0px 10px #fff, 0 0 10px #38eeff,
+    0 0 40px #38eeff;
+
+  animation: dlink 12s infinite;
+  -webkit-animation: dlink 5s infinite;
 }
 
 .title {
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: bolder;
   color: #fff;
   text-align: center;
   margin-bottom: 20px;
+  font-family: "Pixelify Sans", sans-serif;
 }
 
 .pot {
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   font-weight: bolder;
+
+  font-family: "VT323", monospace;
   color: #fff;
   text-align: center;
   flex: 1;
 }
 
 .potAmount {
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: bolder;
   color: #fff;
   text-align: center;
+
+  font-family: "VT323", monospace;
 }
 
 .goldAccent {
@@ -41,37 +51,55 @@
 }
 
 .btn {
-  background-color: #1e2128;
   width: 50%;
   display: flex;
   justify-content: center;
   place-self: center;
-  color: #f45358;
-  padding: 15px 32px;
   text-align: center;
   text-decoration: none;
   margin-top: 20px;
-  cursor: pointer;
-  border-radius: 1.5rem;
-  font-weight: bolder;
   font-size: 1.5rem;
   border: 1px solid #f45358;
+  margin-right: 20px;
+  cursor: pointer;
+  background-color: #000000;
+  border-radius: 1.5rem;
+  padding: 10px 20px;
+  color: #f0f4fa;
+  font-family: "VT323", monospace;
+  border: 2px solid #f1f1f3;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3), 0 0px 2px #fff, 0 0 4px #38eeff,
+    0 0 8px #38eeff;
+  text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.3), 0 0px 15px #fff, 0 0 10px #38eeff,
+    0 0 50px #38eeff;
+  -webkit-animation: fade 3s infinite alternate;
+  -moz-animation: fade 3s infinite alternate;
+  -o-animation: fade 3s infinite alternate;
+  animation: fade 3s infinite alternate;
+  
+  transition: all 0.2s ease-in-out;
+}
+.btn:hover{
+  scale: 1.2;
+  animation: none;
 }
 
 .recentWinnerTitle {
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: bolder;
   color: #fff;
   text-align: center;
-  margin-top: 20px;
+  font-family: "VT323", monospace;
+  margin-bottom: 15px;
 }
 
 .winner {
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: bolder;
   color: #fff;
   text-align: center;
   color: #f45358;
+  font-family: "VT323", monospace;
 }
 
 .textAccent {
@@ -79,7 +107,7 @@
 }
 
 .drawWinnerBtn {
-  background-color: #242833;
+  background-color: #1f1e1e;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -92,4 +120,115 @@
   font-weight: bolder;
   cursor: pointer;
   color: #f2505e;
+}
+
+@-webkit-keyframes dlink {
+  20%,
+  24%,
+  55% {
+    color: #111;
+    box-shadow: none;
+  }
+
+  0%,
+  19%,
+  21%,
+  23%,
+  25%,
+  54%,
+  56%,
+  100% {
+    box-shadow: 0 0 2px #ffa500, 0 0 8px #ffa500, 0 0 7px #ffa500,
+      0 0 6px #ffa500, 0 0 4px #ff0000, 0 0 5px #ff8d00, 0 0 30px #ff0000;
+    color: #fff6a9;
+  }
+}
+
+@-moz-keyframes blink {
+  70% {
+    opacity: 0.7;
+  }
+}
+@-webkit-keyframes blink {
+  45% {
+    opacity: 0.5;
+  }
+}
+@-o-keyframes blink {
+  70% {
+    opacity: 0.7;
+  }
+}
+@keyframes blink {
+  70% {
+    opacity: 0.7;
+  }
+}
+@-moz-keyframes fade {
+  40% {
+    opacity: 0.8;
+  }
+  42% {
+    opacity: 0.1;
+  }
+  43% {
+    opacity: 0.8;
+  }
+  45% {
+    opacity: 0.1;
+  }
+  46% {
+    opacity: 0.8;
+  }
+}
+@-webkit-keyframes fade {
+  40% {
+    opacity: 0.8;
+  }
+  42% {
+    opacity: 0.1;
+  }
+  43% {
+    opacity: 0.8;
+  }
+  45% {
+    opacity: 0.1;
+  }
+  46% {
+    opacity: 0.8;
+  }
+}
+@-o-keyframes fade {
+  40% {
+    opacity: 0.8;
+  }
+  42% {
+    opacity: 0.1;
+  }
+  43% {
+    opacity: 0.8;
+  }
+  45% {
+    opacity: 0.1;
+  }
+  46% {
+    opacity: 0.8;
+  }
+}
+@keyframes fade {
+  40% {
+    opacity: 0.8;
+  }
+  42% {
+    opacity: 0.1;
+  }
+  43% {
+    opacity: 0.8;
+  }
+  45% {
+    opacity: 0.1;
+  }
+  46% {
+    opacity: 0.8;
+  }
 }

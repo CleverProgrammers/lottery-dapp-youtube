@@ -5,28 +5,34 @@
   display: flex;
   margin-top: 50px;
   align-items: center;
-  border-radius: 2rem;
+  border-radius: 0.5rem;
   margin: 50px auto;
   overflow: hidden;
   flex-direction: column;
-  background-color: #212530;
+  background-color: #000000;
   background-color: 100;
-  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-  -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  
+  box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.3), 0 0px 10px #fff, 0 0 10px #38eeff,
+    0 0 40px #38eeff;
+
+  animation: dlink 12s infinite;
+  -webkit-animation: dlink 5s infinite;
+  
+  border: 3px solid #ffffff;
 }
 
 .tableHeader {
   width: 100%;
   height: 100px;
-  background-color: #383c47;
+  background-color: #000000;
   color: #f1f1f3;
   display: flex;
   align-items: flex-end;
   padding: 10px;
   justify-content: space-between;
   padding: 10px 40px;
-  border-bottom: 1px solid #31353e;
+  border-bottom: 3px solid #ffffff;
+  font-family: 'Handjet', sans-serif;
 }
 
 .rows {
@@ -41,21 +47,47 @@
 .amountTitle {
   font-size: 1.3rem;
   font-weight: bolder;
-  color: #f2505e;
+  color: #ffffff;
+  font-family: 'Handjet', sans-serif;
 }
 
 .addressTitle {
   font-size: 1.3rem;
   font-weight: bolder;
-  color: #f2505e;
+  color: #ffffff;
+  font-family: 'Handjet', sans-serif;
 }
 
 .noPlayers {
   font-size: 1.3rem;
   font-weight: bolder;
-  color: #f2505e;
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 30px;
+  font-family: 'Handjet', sans-serif;
+}
+
+
+@-webkit-keyframes dlink {
+  20%,
+  24%,
+  55% {
+    color: #111;
+    box-shadow: none;
+  }
+
+  0%,
+  19%,
+  21%,
+  23%,
+  25%,
+  54%,
+  56%,
+  100% {
+    box-shadow: 0 0 2px #ffa500, 0 0 8px #ffa500, 0 0 7px #ffa500,
+      0 0 6px #ffa500, 0 0 4px #ff0000, 0 0 5px #ff8d00, 0 0 30px #ff0000;
+    color: #fff6a9;
+  }
 }
